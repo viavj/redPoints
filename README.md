@@ -2,7 +2,7 @@
 
 Features: 
 
-  1: Pagination.
+  1: Authentication.
   
   2:search by title, sorting.
   
@@ -12,6 +12,11 @@ Features:
   
   5: modal containeng favorite movies.
   
-  6: after comming back from some movie's page to home page, parameters you set before 'filtered movies by tiitle, some sort       parameter, page where you was' will be set back.
+  6: Pagination.
+  
+  
+  7: after comming back from some movie's page to home page, parameters you set before 'filtered movies by tiitle, some sort       parameter, page where you was' will be set back.
+  
+  8: Layouts for mobile and desktop.
   
   It would be nice to have 'isFavorite' property in 'movie' object. Since it's not there, i have to get the list of favorite movies first, then get the list of 'popular/filtered by title' movies so i can attach 'favorite icon' to them.
