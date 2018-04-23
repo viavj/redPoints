@@ -1,5 +1,8 @@
 # redPoints
 
+STEP 1: CHANGE the API_KEY and ACCOUNT_ID
+/src/shared/AxiosConfig/EndPoints.js
+
 Features: 
 
   1: Authentication.
