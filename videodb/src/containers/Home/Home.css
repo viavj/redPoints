@@ -10,12 +10,18 @@
     justify-content: center;
 }
 
+.actionBar .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .searchInput:focus,
 select:focus {
     outline: none;
 }
 .searchInput{
-    margin: 50px 20px;
+    margin: 10px;
     width: 150px;
     font-size: 16px;
     border: 1px solid #649a51;
@@ -25,8 +31,8 @@ select:focus {
 }
 
 select {
-    margin: 50px 20px;
-    width: 150px;
+    margin: 10px;
+    width: 155px;
     padding: 5px 35px 5px 5px;
     font-size: 16px;
     border: 1px solid #649a51;

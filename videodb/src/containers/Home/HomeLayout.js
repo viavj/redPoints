@@ -22,13 +22,22 @@ const layout = (props) => {
     const filteredMovieList = props.filteredMovies.length ? props.filteredMovies
         : <Loader />
 
+    const checkIfFavorite = (id) => {
+        let isFavorite = false;
+        props.favoriteMovies.map(movie => {
+            if (id === movie.id) isFavorite = true;
+        })
+        return isFavorite;
+    }
+
     const movieList = props.searchString ? filteredMovieList : popularMovieList;
     const _class = props.layoutType === layoutTypes.MOBILE ? 'flex-item-mobile' : 'flex-item-desktop';
     const renderMovieList = Array.isArray(movieList) ? props.sortByParam(movieList).map(movie => {
+        const isFavorite = checkIfFavorite(movie.id);
         return <Movie key={movie.id}
             className={_class}
             movie={movie}
-            isFavorite={false}
+            isFavorite={isFavorite}
         />
     })
         : movieList
@@ -57,18 +66,21 @@ const layout = (props) => {
     //************** */
     // Input ans sort elements
     const actionBar = (
-        <div className='actionBar' >
-            <p className='sortSection' >Search By</p>        
-            <input type='text' className='searchInput' placeholder='Title' value={props.searchString} onChange={(e) =>
-                props.handleSearchAndSortChange(e, searchAndSortParams.SEARCH_STRING)} />
-            <br />
-            <p className='sortSection' >Sort By</p>
-            <select value={props.sortParam} onChange={(e) => props.handleSearchAndSortChange(e, searchAndSortParams.SORT_PARAM)} >
-                <option value=''>...</option>
-                <option value={sortTypes.BY_TITLE}>Title</option>
-                <option value={sortTypes.BY_DATE}>Date</option>
-                <option value={sortTypes.BY_RAITING}>raiting</option>
-            </select>
+        <div className='actionBar wrap' >
+            <div className='item'>
+                <p className='sortSection' >Search By</p>
+                <input type='text' className='searchInput' placeholder='Title' value={props.searchString} onChange={(e) =>
+                    props.handleSearchAndSortChange(e, searchAndSortParams.SEARCH_STRING)} />
+            </div>
+            <div className='item'>
+                <p className='sortSection' >Sort By</p>
+                <select value={props.sortParam} onChange={(e) => props.handleSearchAndSortChange(e, searchAndSortParams.SORT_PARAM)} >
+                    <option value=''>...</option>
+                    <option value={sortTypes.BY_TITLE}>Title</option>
+                    <option value={sortTypes.BY_DATE}>Date</option>
+                    <option value={sortTypes.BY_RAITING}>raiting</option>
+                </select>
+            </div>
         </div>
     )
     //************** */
@@ -87,7 +99,6 @@ const layout = (props) => {
             </ul>
         </div>
     )
-
 }
 
 export default layout;

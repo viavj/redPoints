@@ -7,7 +7,7 @@ import MovieDetails from '../../components/MovieDetails/MovieDetails';
 class MoviePage extends React.Component {
 
     ifFavoriteMovies = ({ params: { id } }) => {
-        if (this.props.favoriteMovies.length) this.props.getMovie(id);
+        if (this.props.checkForFavorites) this.props.getMovie(id);
     }
 
     componentDidMount() {
@@ -53,13 +53,15 @@ class MoviePage extends React.Component {
 
 MoviePage.propsTypes = {
     movie: PropTypes.object.isRequired,
-    favoriteMovies: PropTypes.array.isRequired
+    favoriteMovies: PropTypes.array.isRequired,
+    checkForFavorites: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {
     return {
         movie: state.movieReducer.movie,
-        favoriteMovies: state.movieReducer.favoriteMovies
+        favoriteMovies: state.movieReducer.favoriteMovies,
+        checkForFavorites: state.movieReducer.checkForFavorites
     }
 }
 
@@ -72,4 +74,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage)
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

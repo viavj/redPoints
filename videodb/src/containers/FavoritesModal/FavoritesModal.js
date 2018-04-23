@@ -38,6 +38,7 @@ class FavoritesModal extends React.Component {
                 className={_class}
                 movie={movie}
                 isFavorite={true}
+                renderForModal={true}
                 removeFromFavs={() => this.props.removeFromFavs(movie.id)}
             />
         })

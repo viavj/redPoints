@@ -7,6 +7,7 @@ const initialState = {
     movie: {},
     totalPages: 0,
     favoriteMovies: [],
+    checkForFavorites: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +32,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_FAVORITE_MOVIES:
             return {
                 ...state,
-                favoriteMovies: action.favoriteMovies
+                favoriteMovies: action.favoriteMovies,
+                checkForFavorites: true
             }
         case actionTypes.ADD_TO_FAVORITES:
             return {

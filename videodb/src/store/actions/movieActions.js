@@ -1,12 +1,13 @@
 import * as actionTypes from '../actionTypes';
 import axios from 'axios';
 import endPoints from '../../shared/AxiosConfig/EndPoints';
+import * as UIExternalAssets from '../../shared/UI/externalAssets';
 
 const generateMoviePosterUrl = (arr) => {
     return arr.map(movie => {
         return {
             ...movie,
-            poster_path: movie.poster_path === null ? 'https://i.imgur.com/H6zTeSs.jpg'
+            poster_path: movie.poster_path === null ? UIExternalAssets.AH_HA_HA_HA_STAYIN_ALIVE_URL
                 : endPoints.moviePoster(movie.poster_path)
         }
     })
@@ -57,7 +58,7 @@ export const getMovie = (id) => {
                     type: actionTypes.GET_MOVIE,
                     movie: {
                         ...response.data,
-                        poster_path: response.data.poster_path === null ? 'https://i.imgur.com/H6zTeSs.jpg'
+                        poster_path: response.data.poster_path === null ? UIExternalAssets.AH_HA_HA_HA_STAYIN_ALIVE_URL
                             : endPoints.moviePoster(response.data.poster_path)
                     }
                 })
@@ -100,7 +101,6 @@ export const addToFavs = () => {
             })
         })
             .catch(err => console.log(err))
-
     }
 }
 
@@ -122,6 +122,5 @@ export const removeFromFavs = (id) => {
             })
         })
             .catch(err => console.log(err))
-
     }
 }

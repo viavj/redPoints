@@ -8,7 +8,7 @@ import * as sortTypes from '../../shared/UI/sortTypes';
 
 import Layout from './HomeLayout';
 
-class Home extends React.Component {
+export class Home extends React.Component {
 
     retrieveMovies = (str) => {
         if (str) this.props.getFilteredMovies();
@@ -16,12 +16,12 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.favoriteMovies.length) this.retrieveMovies(this.props.searchString);
+        if (this.props.checkForFavorites) this.retrieveMovies(this.props.searchString);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.favoriteMovies !== nextProps.favoriteMovies
-        ||  this.props.searchString !== nextProps.searchString) this.retrieveMovies(nextProps.searchString);
+        if (this.props.checkForFavorites !== nextProps.checkForFavorites
+            || this.props.searchString !== nextProps.searchString) this.retrieveMovies(nextProps.searchString);
     }
     componentWillUnmount() {
         this.props.cleanUpMovieLists();
@@ -93,6 +93,7 @@ Home.propTypes = {
     sortParam: PropTypes.string,
     searchString: PropTypes.string,
     favoriteMovies: PropTypes.array.isRequired,
+    checkForFavorites: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {
@@ -106,7 +107,8 @@ const mapStateToProps = state => {
         lastPage: state.uiReducer.lastPage,
         sortParam: state.uiReducer.sortParam,
         searchString: state.uiReducer.searchString,
-        favoriteMovies: state.movieReducer.favoriteMovies
+        favoriteMovies: state.movieReducer.favoriteMovies,
+        checkForFavorites: state.movieReducer.checkForFavorites
     }
 }
 
