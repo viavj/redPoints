@@ -1,10 +1,10 @@
 # redPoints
 
-STEP 1: CHANGE the API_KEY, ACCOUNT_ID and redirect url (line : 15) in case you use different port, mine is
+STEP 1: ' /src/shared/AxiosConfig/EndPoints.js ' CHANGE the API_KEY, ACCOUNT_ID and redirect url (line : 15) in case you use different port, mine is
 
 http://localhost:3000
 
-/src/shared/AxiosConfig/EndPoints.js
+
 
 
 
