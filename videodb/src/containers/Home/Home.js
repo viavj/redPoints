@@ -21,8 +21,8 @@ export class Home extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.checkForFavorites !== nextProps.checkForFavorites
-            || this.props.searchString !== nextProps.searchString) this.retrieveMovies(nextProps.searchString);
-    }
+            || this.props.searchString !== nextProps.searchString) this.retrieveMovies(nextProps.searchString);    
+        }
     componentWillUnmount() {
         this.props.cleanUpMovieLists();
     }

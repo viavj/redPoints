@@ -22,21 +22,8 @@ class Layout extends React.Component {
         window.removeEventListener('resize', this.props.getlayoutType)
     }
 
-    getAllPArams = () => {
-        const query = window.location.href.split('?')[1];
-        if (query) {
-            return query.split('&').map(param => {
-                return { [param.split('=')[0]]: param.split('=')[1] }
-            })
-        }
-        return [];
-    }
-
-    componentDidMount() {
-        const params = this.getAllPArams();
-        const tokenIsApproved = params.length > 0 ? params[1].approved : false;
-        if (tokenIsApproved && !this.props.sessionId) this.props.initSession(params[0].request_token)
-        else this.props.getToken();
+    componentDidMount() {  
+        this.props.auth()
     }
 
     componentDidUpdate() {
@@ -67,7 +54,6 @@ class Layout extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        requestToken: state.authReducer.requestToken,
         sessionId: state.authReducer.sessionId
     }
 }
@@ -75,9 +61,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getlayoutType: () => dispatch(actionCreators.getLayoutType()),
-        initSession: (param) => dispatch(actionCreators.initSession(param)),
-        getToken: () => dispatch(actionCreators.getToken()),
-        getFavoriteMovies: () => dispatch(actionCreators.getFavoriteMovies())
+        getFavoriteMovies: () => dispatch(actionCreators.getFavoriteMovies()),
+        auth: () => dispatch(actionCreators.auth())
     }
 }
 

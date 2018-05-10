@@ -1,6 +1,7 @@
 export { 
-    initSession,
-    getToken
+    // initSession,
+    // getToken
+    auth
  } from './actions/authActions';
 
 export {
